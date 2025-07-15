@@ -1,7 +1,6 @@
 .page {
   background-color: #fcf5e5;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
-  min-width: 1320px;
-  max-width: 1440px;
-  margin: 0 auto;
+  /* width before it starts shrinking */
+  min-width: 630px;
 }
