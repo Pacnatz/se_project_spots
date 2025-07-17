@@ -48,6 +48,13 @@
   line-height: 100%;
   letter-spacing: 0%;
   color: #212121;
+  /* hide overflow text */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__description {
@@ -59,6 +66,26 @@
   line-height: 100%;
   letter-spacing: 0%;
   color: #212121b2;
+  /* hide overflow text */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
+}
+
+.profile__edit-profile {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-profile:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .profile__new-post {
@@ -73,6 +100,14 @@
   padding: 18px 24px 18px 32px;
   border-radius: 8px;
   color: #fcf5e5;
+  border: none;
+  /* transition for hover effect */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__new-post:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .profile__new-post-icon {
@@ -87,4 +122,75 @@
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0%;
+}
+
+@media screen and (max-width: 630px) {
+  .profile {
+    /* max-width of actual content subtracting padding included*/
+    max-width: 288px;
+    padding: 20px 16px 0px;
+    margin: 0 auto;
+  }
+
+  .profile__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #21212166;
+  }
+
+  .profile__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+  }
+
+  .profile__display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    height: auto;
+  }
+
+  .profile__info {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 32px;
+  }
+
+  .profile__text {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 6px;
+  }
+
+  .profile__name {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .profile__description {
+    text-align: center;
+  }
+
+  .profile__new-post {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .profile__name {
+    max-width: 240px;
+  }
+  .profile__description {
+    max-width: 240px;
+  }
 }
