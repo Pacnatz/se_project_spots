@@ -1,10 +1,11 @@
 .cards {
   max-width: 1280px;
-  padding: 20px 0px;
+  padding: 20px 0 0;
   margin: 0 auto;
 }
 
 .cards__list {
+  margin: 0;
   /* max-width of actual content subtracting padding included*/
   padding: 0px 0px 40px;
   display: grid;
@@ -19,16 +20,11 @@
     justify-content: center;
   }
 }
-@media screen and (max-width: 880px) {
-  .cards__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: center;
-  }
-}
 
 @media screen and (max-width: 630px) {
   .cards__list {
+    padding-bottom: 20px;
+    gap: 20px;
     grid-template-columns: 288px;
-    justify-content: center;
   }
 }

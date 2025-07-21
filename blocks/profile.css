@@ -17,7 +17,6 @@
 
 .profile__column {
   width: 100%;
-  height: 190px;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -27,10 +26,9 @@
   margin: 0;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 32px;
   line-height: 100%;
-  letter-spacing: 0%;
   color: #212121;
   /* hide overflow text */
   display: -webkit-box;
@@ -45,10 +43,9 @@
   margin: 0;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
   color: #212121b2;
   /* hide overflow text */
   display: -webkit-box;
@@ -60,10 +57,15 @@
 }
 
 .profile__edit-btn {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
   margin-top: auto;
   border: none;
   padding: 0;
-  background-color: #fcf5e5;
+  background-color: transparent;
   display: flex;
   align-items: center;
   column-gap: 8px;
@@ -85,7 +87,7 @@
   justify-content: center;
   align-items: center;
   column-gap: 8px;
-  background-color: black;
+  background-color: #212121;
   padding: 18px 32px 18px 32px;
   border-radius: 8px;
   color: #fcf5e5;
@@ -107,10 +109,9 @@
 .profile__new-post-text {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
 }
 
 @media screen and (max-width: 880px) {
@@ -131,7 +132,6 @@
     /* max-width of actual content subtracting padding included*/
     max-width: 288px;
     padding: 20px 0px 20px;
-    margin: 0 auto;
     flex-direction: column;
     align-items: center;
     row-gap: 12px;
@@ -140,22 +140,9 @@
   .profile__avatar {
     width: 80px;
     height: 80px;
-    border-radius: 8px;
   }
 
   .profile__column {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 6px;
-  }
-
-  .profile__text {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     row-gap: 6px;
   }
@@ -176,6 +163,7 @@
   }
 
   .profile__new-post-btn {
+    width: 100%;
     align-self: center;
     margin-left: 0;
     margin-top: 0;
