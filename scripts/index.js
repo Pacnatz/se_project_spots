@@ -103,6 +103,28 @@ function handleAddCardSubmit(evt) {
 }
 
 initialCards.forEach(function (card) {
-  console.log(card.name);
-  console.log(card.link);
+  const cardsList = document.querySelector(".cards__list");
+
+  const cardElement = getCardElement({
+    name: card.name,
+    link: card.link,
+  });
+
+  cardsList.prepend(cardElement);
 });
+
+function getCardElement(data) {
+  const cardElement = document
+    .querySelector("#cards__template")
+    .content.querySelector(".card")
+    .cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".card__img");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardTitle.textContent = data.name;
+  cardImage.setAttribute("src", data.link);
+  cardImage.setAttribute("alt", data.name);
+
+  return cardElement;
+}
