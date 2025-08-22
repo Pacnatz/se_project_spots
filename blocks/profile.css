@@ -57,7 +57,7 @@
 }
 
 .profile__edit-btn {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  width: fit-content;
   font-weight: 500;
   font-style: normal;
   font-size: 16px;

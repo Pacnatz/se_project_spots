@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -43,6 +47,11 @@ const newPostCardInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 const newPostFormElement = newPostModal.querySelector(".modal__form");
 
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewModalImage = previewModal.querySelector(".modal__picture");
+const previewModalCaption = previewModal.querySelector(".modal__caption");
+
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -75,6 +84,10 @@ newPostBtn.addEventListener("click", function () {
 
 newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
+});
+
+previewModalCloseBtn.addEventListener("click", function () {
+  closeModal(previewModal);
 });
 
 // Set the submit listener.
@@ -129,6 +142,14 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   cardImage.setAttribute("src", data.link);
   cardImage.setAttribute("alt", data.name);
+
+  cardImage.addEventListener("click", () => {
+    previewModalCaption.textContent = data.name;
+    previewModalImage.setAttribute("src", data.link);
+    previewModalImage.setAttribute("alt", data.name);
+
+    openModal(previewModal);
+  });
 
   cardLikeBtnEl.addEventListener("click", () => {
     cardLikeBtnEl.classList.toggle("card__like-btn_active");
