@@ -90,7 +90,7 @@
 
 .modal__input:hover {
   border: 1px solid rgba(33, 33, 33, 1);
-  cursor: pointer;
+  cursor: text;
 }
 
 .modal__input::placeholder {

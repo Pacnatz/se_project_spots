@@ -46,6 +46,11 @@ const newPostFormElement = newPostModal.querySelector(".modal__form");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
+const cardTemplate = document
+  .querySelector("#cards__template")
+  .content.querySelector(".card");
+const cardsList = document.querySelector(".cards__list");
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
@@ -95,36 +100,44 @@ function handleProfileFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   // Prevent default browser behavior.
   evt.preventDefault();
-  // Log both input values to the console.
-  console.log(newPostCardInput.value);
-  console.log(newPostCaptionInput.value);
+
+  const inputValues = {
+    name: newPostCaptionInput.value,
+    link: newPostCardInput.value,
+  };
+
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
   // Close the modal.
   newPostModal.classList.remove("modal_is-opened");
 }
 
 initialCards.forEach(function (card) {
-  const cardsList = document.querySelector(".cards__list");
+  const cardElement = getCardElement(card);
 
-  const cardElement = getCardElement({
-    name: card.name,
-    link: card.link,
-  });
-
-  cardsList.prepend(cardElement);
+  cardsList.append(cardElement);
 });
 
 function getCardElement(data) {
-  const cardElement = document
-    .querySelector("#cards__template")
-    .content.querySelector(".card")
-    .cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(".card__img");
   const cardTitle = cardElement.querySelector(".card__title");
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
 
   cardTitle.textContent = data.name;
   cardImage.setAttribute("src", data.link);
   cardImage.setAttribute("alt", data.name);
+
+  cardLikeBtnEl.addEventListener("click", () => {
+    cardLikeBtnEl.classList.toggle("card__like-btn_active");
+  });
+
+  cardDeleteBtnEl.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
+  });
 
   return cardElement;
 }
