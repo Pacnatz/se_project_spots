@@ -2,10 +2,17 @@
   display: flex;
   justify-content: center;
   background-color: #fff;
+  padding: 0 80px;
 }
 
 .header__logo {
   width: 94px;
   height: 26px;
   margin: 10px 0px;
+}
+
+@media screen and (max-width: 630px) {
+  .header {
+    padding: 0 16px;
+  }
 }

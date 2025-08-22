@@ -106,7 +106,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = editProfileNameInput.value;
   profileDescription.textContent = editProfileDescriptionInput.value;
   // Close the modal.
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 }
 
 // Create the form submission handler.
@@ -122,7 +122,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
   // Close the modal.
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 }
 
 initialCards.forEach(function (card) {
@@ -157,7 +157,6 @@ function getCardElement(data) {
 
   cardDeleteBtnEl.addEventListener("click", () => {
     cardElement.remove();
-    cardElement = null;
   });
 
   return cardElement;

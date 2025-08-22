@@ -147,7 +147,10 @@
 .modal__caption {
   width: auto;
   display: inline-block;
-  margin: 8px 0 0;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  margin: 0;
   padding: 4px 8px;
   background-color: #000;
   color: #fff;
