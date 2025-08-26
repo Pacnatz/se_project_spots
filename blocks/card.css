@@ -34,6 +34,9 @@
 .card__like-btn {
   border: none;
   background-image: url("../images/Like-Icon.svg");
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 23px;
   height: 20px;
   opacity: 0.4;
@@ -46,6 +49,7 @@
 
 .card__like-btn_active {
   background-image: url("../images/Liked-Icon.svg");
+  background-color: transparent;
   opacity: 1;
 }
 

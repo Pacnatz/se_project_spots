@@ -38,14 +38,14 @@ const editProfileNameInput = editProfileModal.querySelector(
 const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
-const editProfileFormElement = editProfileModal.querySelector(".modal__form");
+const editProfileFormElement = document.forms["profile-form"];
 
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostCardInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-const newPostFormElement = newPostModal.querySelector(".modal__form");
+const newPostFormElement = document.forms["new-post-form"];
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -59,6 +59,16 @@ const cardTemplate = document
   .querySelector("#cards__template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+// Find all close buttons
+const closeButtons = document.querySelectorAll(".modal__close-btn");
+
+closeButtons.forEach((button) => {
+  // Find the closest popup only once
+  const popup = button.closest(".modal");
+  // Set the listener
+  button.addEventListener("click", () => closeModal(popup));
+});
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
@@ -74,20 +84,8 @@ editProfileBtn.addEventListener("click", function () {
   editProfileDescriptionInput.value = profileDescription.textContent;
 });
 
-editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
-
 newPostBtn.addEventListener("click", function () {
   openModal(newPostModal);
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-  closeModal(newPostModal);
-});
-
-previewModalCloseBtn.addEventListener("click", function () {
-  closeModal(previewModal);
 });
 
 // Set the submit listener.
@@ -119,16 +117,14 @@ function handleAddCardSubmit(evt) {
     link: newPostCardInput.value,
   };
 
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
+  renderCard(inputValues);
   // Close the modal.
   closeModal(newPostModal);
+  evt.target.reset();
 }
 
 initialCards.forEach(function (card) {
-  const cardElement = getCardElement(card);
-
-  cardsList.append(cardElement);
+  renderCard(card, "append");
 });
 
 function getCardElement(data) {
@@ -160,4 +156,12 @@ function getCardElement(data) {
   });
 
   return cardElement;
+}
+
+// The function accepts a card object and a method of adding to the section
+// The method is initially `prepend`, but you can pass `append`
+function renderCard(item, method = "prepend") {
+  const cardElement = getCardElement(item);
+  // Add the card into the section using the method
+  cardsList[method](cardElement);
 }
