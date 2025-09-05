@@ -112,6 +112,30 @@
   color: rgba(33, 33, 33, 0.3);
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__input_type_error:hover {
+  border: 1px solid rgba(255, 0, 0, 1);
+}
+
+.modal__error {
+  color: #ff0000b2;
+  opacity: 0;
+  display: block;
+  margin-top: 8px;
+  font-family: "Poppins" Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 110%;
+}
+
+.modal__error_active {
+  opacity: 1;
+}
+
 .modal__submit-btn {
   color: #fff;
   background-color: rgba(33, 33, 33, 1);
@@ -128,6 +152,16 @@
 .modal__submit-btn:hover {
   background-color: rgba(33, 33, 33, 0.8);
   cursor: pointer;
+}
+
+.modal__submit-btn_inactive {
+  background-color: rgba(33, 33, 33, 0.5);
+  cursor: default;
+}
+
+.modal__submit-btn_inactive:hover {
+  background-color: rgba(33, 33, 33, 0.5);
+  cursor: default;
 }
 
 .modal__image-container {
