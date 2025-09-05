@@ -63,6 +63,16 @@ const cardTemplate = document
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
 
+// Find all overlays
+const overlays = document.querySelectorAll(".modal");
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", (evt) => {
+    if (evt.target === overlay) {
+      closeModal(overlay);
+    }
+  });
+});
+
 // Find all close buttons
 const closeButtons = document.querySelectorAll(".modal__close-btn");
 
@@ -73,12 +83,23 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => closeModal(popup));
 });
 
+function escapeHandler(evt) {
+  // Close all overlays
+  if (evt.key === "Escape") {
+    overlays.forEach((overlay) => {
+      closeModal(overlay);
+    });
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", escapeHandler);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", escapeHandler);
 }
 
 editProfileBtn.addEventListener("click", function () {
@@ -112,7 +133,7 @@ function handleProfileFormSubmit(evt) {
   profileDescription.textContent = editProfileDescriptionInput.value;
   // Close the modal.
   closeModal(editProfileModal);
-  disableButton(editProfileSubmitBtn);
+  disableButton(settings, editProfileSubmitBtn);
 }
 
 // Create the form submission handler.
@@ -128,9 +149,7 @@ function handleAddCardSubmit(evt) {
   renderCard(inputValues);
   // Close the modal.
   closeModal(newPostModal);
-
-  console.log("work");
-  disableButton(newPostSubmitBtn);
+  disableButton(settings, newPostSubmitBtn);
   evt.target.reset();
 }
 
