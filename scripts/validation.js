@@ -7,10 +7,13 @@ const settings = {
   inactiveButtonClass: "modal__submit-btn_inactive",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_active",
+  errorSuffix: "-error",
 };
 
 const showInputError = (settings, formEl, inputEl, errorMessage) => {
-  const errorElement = formEl.querySelector(`#${inputEl.id}-error`);
+  const errorElement = formEl.querySelector(
+    `#${inputEl.id}${settings.errorSuffix}`
+  );
 
   inputEl.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -18,7 +21,9 @@ const showInputError = (settings, formEl, inputEl, errorMessage) => {
 };
 
 const hideInputError = (settings, formEl, inputEl) => {
-  const errorElement = formEl.querySelector(`#${inputEl.id}-error`);
+  const errorElement = formEl.querySelector(
+    `#${inputEl.id}${settings.errorSuffix}`
+  );
 
   inputEl.classList.remove(settings.inputErrorClass);
   errorElement.classList.remove(settings.errorClass);

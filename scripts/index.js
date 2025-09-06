@@ -83,7 +83,7 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => closeModal(popup));
 });
 
-function escapeHandler(evt) {
+function handleEscapeKey(evt) {
   // Close all overlays
   if (evt.key === "Escape") {
     overlays.forEach((overlay) => {
@@ -94,12 +94,12 @@ function escapeHandler(evt) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
-  document.addEventListener("keydown", escapeHandler);
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
-  document.removeEventListener("keydown", escapeHandler);
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 
 editProfileBtn.addEventListener("click", function () {
