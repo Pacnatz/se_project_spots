@@ -9,19 +9,22 @@
     />
     <meta name="author" content="Nhat Chu" />
     <meta name="keywords" content="TripleTen, Web development, HTML, CSS" />
-    <link rel="stylesheet" href="pages/index.css" />
     <link rel="icon" href="favicon.ico" />
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="images/Logo.svg" alt="Spots Logo" class="header__logo" />
+        <img
+          src="<%=require('./images/Logo.svg')%>"
+          alt="Spots Logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile">
           <img
-            src="images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Profile Avatar"
             class="profile__avatar"
           />
@@ -30,7 +33,7 @@
             <p class="profile__description">Civil Aviator</p>
             <button class="profile__edit-btn" type="button">
               <img
-                src="images/Edit-Icon.svg"
+                src="<%=require('./images/Edit-Icon.svg')%>"
                 alt="Edit Profile Icon"
                 class="profile__edit-icon"
               />
@@ -39,7 +42,7 @@
           </div>
           <button class="profile__new-post-btn" type="button">
             <img
-              src="images/Plus-Icon.svg"
+              src="<%=require('./images/Plus-Icon.svg')%>"
               alt="New Post Icon"
               class="profile__new-post-icon"
             />
@@ -157,7 +160,5 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/validation.js"></script>
-    <script src="./scripts/index.js"></script>
   </body>
 </html>

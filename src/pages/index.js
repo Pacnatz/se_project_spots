@@ -1,3 +1,10 @@
+import "./index.css";
+import {
+  settings as validationSettings,
+  enableValidation,
+  resetValidation,
+} from "../scripts/validation.js";
+
 const initialCards = [
   {
     name: "Bridge",
@@ -195,3 +202,5 @@ function renderCard(item, method = "prepend") {
   // Add the card into the section using the method
   cardsList[method](cardElement);
 }
+
+enableValidation(validationSettings);
