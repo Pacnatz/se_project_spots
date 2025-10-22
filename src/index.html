@@ -23,11 +23,20 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="Profile Avatar"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/AvatarEdit-Icon.svg')%>"
+                alt="Pencil Icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Profile Avatar"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -101,6 +110,34 @@
                 maxlength="200"
               />
               <span id="profile-description-input-error" class="modal__error">
+                ERROR!
+              </span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+      <!-- Edit avatar modal -->
+      <div id="edit-avatar-modal" class="modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            aria-label="Close Modal"
+            class="modal__close-btn"
+          ></button>
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <form id="edit-avatar-form" class="modal__form" novalidate>
+            <label for="edit-avatar-input" class="modal__label">
+              Profile Picture
+              <input
+                id="edit-avatar-input"
+                type="url"
+                class="modal__input"
+                name="avatar"
+                placeholder="Paste the link to an image"
+                required
+              />
+              <span id="edit-avatar-input-error" class="modal__error">
                 ERROR!
               </span>
             </label>
