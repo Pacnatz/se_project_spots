@@ -71,6 +71,8 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewModalImage = previewModal.querySelector(".modal__picture");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
+const deleteModal = document.querySelector("#delete-post-modal");
+
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const profileAvatar = document.querySelector(".profile__avatar");
@@ -217,6 +219,11 @@ function handleAddCardSubmit(evt) {
   evt.target.reset();
 }
 
+function handleDeleteModal(cardElement) {
+  openModal(deleteModal);
+  //cardElement.remove();
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
 
@@ -242,7 +249,7 @@ function getCardElement(data) {
   });
 
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
+    handleDeleteModal(cardElement);
   });
 
   return cardElement;
