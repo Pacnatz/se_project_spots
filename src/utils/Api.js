@@ -32,6 +32,47 @@ class Api {
     });
   }
 
+  addCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: "POST",
+      // Send data as a JSON string.
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  changeLikeStatus(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      headers: this._headers,
+      method: isLiked ? "DELETE" : "PUT",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
