@@ -209,6 +209,7 @@
 .modal__submit-btn_type_cancel {
   min-width: 156px;
   background-color: #ffffff;
+  color: #000000;
   border: 2px solid #212121;
 }
 
