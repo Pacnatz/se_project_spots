@@ -74,8 +74,6 @@ const previewModalCaption = previewModal.querySelector(".modal__caption");
 
 const deleteModal = document.querySelector("#delete-post-modal");
 const deleteCardFormElement = document.forms["delete-card-form"];
-const deleteSubmitBtn =
-  deleteCardFormElement.querySelector(".modal__submit-btn");
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -243,7 +241,7 @@ function handleAddCardSubmit(evt) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
-  setButtonText(deleteSubmitBtn, "Delete", true);
+  setButtonText(deleteCardFormElement, "Delete", true);
   api
     .deleteCard(selectedCardId) // pass the ID the the api function
     .then(() => {
@@ -254,7 +252,7 @@ function handleDeleteSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(deleteSubmitBtn, "Delete", false);
+      setButtonText(deleteCardFormElement, "Delete", false);
     });
 }
 
