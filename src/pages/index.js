@@ -8,40 +8,8 @@ import {
 import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest...",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -54,26 +22,29 @@ const editProfileSubmitBtn =
 
 const editAvatarBtn = document.querySelector(".profile__avatar-btn");
 const editAvatarModal = document.querySelector("#edit-avatar-modal");
-const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
 const editAvatarInput = editAvatarModal.querySelector("#edit-avatar-input");
 const editAvatarFormElement = document.forms["edit-avatar-form"];
 const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
 
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostCardInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 const newPostFormElement = document.forms["new-post-form"];
 const newPostSubmitBtn = newPostFormElement.querySelector(".modal__submit-btn");
 
 const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewModalImage = previewModal.querySelector(".modal__picture");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
 const deleteModal = document.querySelector("#delete-post-modal");
 const deleteCardFormElement = document.forms["delete-card-form"];
+const deleteModalSubmitBtn = deleteCardFormElement.querySelector(
+  ".modal__submit-btn_type_delete"
+);
+const deleteModalCancelBtn = deleteCardFormElement.querySelector(
+  ".modal__submit-btn_type_cancel"
+);
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -100,11 +71,11 @@ api
   .then(([cards, userData]) => {
     cards.forEach(function (card) {
       renderCard(card, "append");
+      // Handle user info
+      profileName.textContent = userData.name;
+      profileDescription.textContent = userData.about;
+      profileAvatar.src = userData.avatar;
     });
-    // Handle user info
-    profileName.textContent = userData.name;
-    profileDescription.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
   })
   .catch((err) => {
     console.error(err);
@@ -178,7 +149,7 @@ deleteCardFormElement.addEventListener("submit", handleDeleteSubmit);
 
 function handleProfileFormSubmit(evt) {
   // Prevent default browser behavior.
-  setButtonText(editProfileSubmitBtn, true, "Save");
+  setButtonText(editProfileSubmitBtn, true);
   evt.preventDefault();
   api
     .editUserInfo({
@@ -194,14 +165,14 @@ function handleProfileFormSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(editProfileSubmitBtn, false, "Save");
+      setButtonText(editProfileSubmitBtn, false);
     });
 }
 
 function handleEditAvatarSubmit(evt) {
   evt.preventDefault();
   // Change text to "Saving..."
-  setButtonText(editAvatarSubmitBtn, true, "Save");
+  setButtonText(editAvatarSubmitBtn, true);
   api
     .editAvatarInfo({ avatar: editAvatarInput.value })
     .then((data) => {
@@ -211,14 +182,14 @@ function handleEditAvatarSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       // Change text back
-      setButtonText(editAvatarSubmitBtn, false, "Save");
+      setButtonText(editAvatarSubmitBtn, false);
     });
 }
 
 // Create the form submission handler.
 function handleAddCardSubmit(evt) {
   // Prevent default browser behavior.
-  setButtonText(newPostSubmitBtn, true, "Save");
+  setButtonText(newPostSubmitBtn, true);
   evt.preventDefault();
   api
     .addCard({
@@ -226,7 +197,7 @@ function handleAddCardSubmit(evt) {
       link: newPostCardInput.value,
     })
     .then((data) => {
-      const inputValues = { name: data.name, link: data.link };
+      const inputValues = { name: data.name, link: data.link, _id: data._id };
       renderCard(inputValues);
       // Close the modal.
       closeModal(newPostModal);
@@ -235,13 +206,13 @@ function handleAddCardSubmit(evt) {
     })
     .catch(console.error)
     .then(() => {
-      setButtonText(newPostSubmitBtn, false, "Save");
+      setButtonText(newPostSubmitBtn, false);
     });
 }
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
-  setButtonText(deleteCardFormElement, "Delete", true);
+  setButtonText(deleteModalSubmitBtn, true, "Deleting...", "Delete");
   api
     .deleteCard(selectedCardId) // pass the ID the the api function
     .then(() => {
@@ -252,7 +223,7 @@ function handleDeleteSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(deleteCardFormElement, "Delete", false);
+      setButtonText(deleteModalSubmitBtn, false, "Deleting...", "Delete");
     });
 }
 
@@ -314,6 +285,11 @@ function handleDeleteCard(cardElement, cardId) {
   selectedCard = cardElement;
   selectedCardId = cardId;
 }
+
+// Handle delete form close button
+deleteModalCancelBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
 
 // The function accepts a card object and a method of adding to the section
 // The method is initially `prepend`, but you can pass `append`

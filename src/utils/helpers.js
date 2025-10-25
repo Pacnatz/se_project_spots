@@ -1,3 +1,10 @@
-export function setButtonText(btn, isLoading, text = "Save") {
-  isLoading ? (btn.textContent = `${text}ing...`) : (btn.textContent = text);
+export function setButtonText(
+  btn,
+  isLoading,
+  clickedText = "Saving...",
+  originalText = "Save"
+) {
+  isLoading
+    ? (btn.textContent = clickedText)
+    : (btn.textContent = originalText);
 }
