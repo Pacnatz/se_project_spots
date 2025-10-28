@@ -4,9 +4,13 @@
 
 https://pacnatz.github.io/se_project_spots/
 
-### Video File
+### Project Pitch Videos
 
-https://drive.google.com/file/d/1ShBl1YrfJKZEqarFjvLk4LKynZqKnypz/view?usp=sharing
+Check out these videos, where I describe my project
+and some challenges I faced while building it:
+
+- [First Video Title](https://drive.google.com/file/d/1ShBl1YrfJKZEqarFjvLk4LKynZqKnypz/view?usp=sharing)
+- [Second Video Title](https://drive.google.com/file/d/1ZMKLHKYZ8ETPdKS90ZR6SxtvrqZEsMVT/view?usp=drive_link)
 
 ### Overview
 
